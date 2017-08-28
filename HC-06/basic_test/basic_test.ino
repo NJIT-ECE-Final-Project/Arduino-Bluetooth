@@ -1,12 +1,15 @@
 #include <SoftwareSerial.h>
 
 // Initializing communication ports
-SoftwareSerial mySerial(10, 9); // TX/RX pins
+SoftwareSerial mySerial(10, 9); // TX/RX pins (10 -> TX on HC06, 9 -> RX on HC06)
 
 void setup()  
 {
   Serial.begin(9600);
   mySerial.begin(115200); //115200 for max speed
+
+  pinMode(10, INPUT);
+  pinMode(9, OUTPUT);
 }
 
 String getMessage(){
@@ -20,7 +23,7 @@ String getMessage(){
   return msg;
 }
 
-String data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+String data = "ABCD1234,ABCD1234,ABCD1234,ABCD1234,ABCD1234,ABCD1234";
 
 void loop()
 {
@@ -28,10 +31,10 @@ void loop()
     long start = millis();
   
     // Check if a message has been received
-    //String msg = getMessage();
-    //if(msg!=""){
-    //  Serial.println(msg);
-    //}
+    String msg = getMessage();
+    if(msg!=""){
+      Serial.println(msg);
+    }
 
     // Send the text you entered in the input field of the Serial Monitor to the HC-06
     //if(Serial.available()){
@@ -40,7 +43,7 @@ void loop()
     //}
 
     // or send a string
-    Serial.println(millis());
+    //Serial.println(millis());
 
 
     mySerial.println(data);
@@ -49,7 +52,7 @@ void loop()
 
     long rem = 20 - (end - start);
 
-    Serial.println(rem);
+    //Serial.println(rem);
 
     if(rem > 0) {
       delay(rem);

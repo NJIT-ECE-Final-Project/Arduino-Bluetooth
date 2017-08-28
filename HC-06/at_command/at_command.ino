@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 SoftwareSerial BTSerial(10, 9); // RX | TX
 
-int baud=115200;
+int baud=9600;
 
 
 void setup()
