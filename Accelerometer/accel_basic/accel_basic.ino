@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_LSM9DS1.h>
@@ -9,7 +9,7 @@
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
 
 // Initializing communication ports
-SoftwareSerial mySerial(10, 9); // TX/RX pins
+//SoftwareSerial mySerial(10, 9); // TX/RX pins
 
 
 #define LSM9DS1_SCK A5
@@ -36,7 +36,7 @@ void setupSensor()
 void setup() 
 {
   Serial.begin(115200);
-  mySerial.begin(115200); //115200 for max speed
+  //mySerial.begin(115200); //115200 for max speed
 
 
   while (!Serial) {
@@ -77,24 +77,24 @@ void loop()
   
   //mag = sqrt(pow(xacc,2) + pow(yacc,2) + pow(zacc,2));
 
-  //Serial.print("Accel X: "); Serial.print(a.acceleration.x); Serial.print(" m/s^2");
-  //Serial.print("\tY: "); Serial.print(a.acceleration.y);     Serial.print(" m/s^2 ");
-  //Serial.print("\tZ: "); Serial.print(a.acceleration.z);     Serial.println(" m/s^2 ");
- // Serial.println(mag);
-  //Serial.println("\n");
+  Serial.print("Accel X: "); Serial.print(a.acceleration.x); Serial.print(" m/s^2");
+  Serial.print("\tY: "); Serial.print(a.acceleration.y);     Serial.print(" m/s^2 ");
+  Serial.print("\tZ: "); Serial.print(a.acceleration.z);     Serial.println(" m/s^2 ");
+  Serial.println(mag);
+  Serial.println("\n");
 
 
 
   
-  //Serial.print("Gyro X: "); Serial.print(g.gyro.x);   Serial.print(" dps");
-  //Serial.print("\tY: "); Serial.print(g.gyro.y);      Serial.print(" dps");
-  //Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" dps");
+  Serial.print("Gyro X: "); Serial.print(g.gyro.x);   Serial.print(" dps");
+  Serial.print("\tY: "); Serial.print(g.gyro.y);      Serial.print(" dps");
+  Serial.print("\tZ: "); Serial.print(g.gyro.z);      Serial.println(" dps");
   
-  //Serial.println();
+  Serial.println();
 
   //Serial.println(sqrt(pow(g.gyro.x,2)+pow(g.gyro.y,2)+pow(g.gyro.z,2)));
 
-
+  /*
   mySerial.print(*((long*) &xacc), HEX);
   mySerial.print(",");
   mySerial.print(*((long*) &yacc), HEX);
@@ -107,7 +107,7 @@ void loop()
   mySerial.print(",");
   mySerial.print(*((long*) &zgyro), HEX);
   mySerial.println();
-  
+  */
 
   longend = millis();
   longrem = 20 - (longend - longstart);
